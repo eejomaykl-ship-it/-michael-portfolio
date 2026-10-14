@@ -1,4 +1,6 @@
-/* MOBILE MENU */
+/* =========================================
+   MOBILE MENU
+========================================= */
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -7,14 +9,18 @@ const mobileMenu =
 document.getElementById("mobileMenu");
 
 
-menuBtn.addEventListener(
-  "click",
-  () => {
+if (menuBtn && mobileMenu) {
 
-    mobileMenu.classList.toggle("open");
+  menuBtn.addEventListener(
+    "click",
+    () => {
 
-  }
-);
+      mobileMenu.classList.toggle("open");
+
+    }
+  );
+
+}
 
 
 document
@@ -34,13 +40,75 @@ document
 
 
 
-/* CATEGORY CARDS */
+/* =========================================
+   PORTFOLIO PAGES
+========================================= */
+
+const portfolioHome =
+document.getElementById("portfolioHome");
+
+const portfolioPages =
+document.querySelectorAll(".portfolio-page");
 
 const categoryCards =
 document.querySelectorAll(".category-card");
 
-const videoSections =
-document.querySelectorAll(".videos-section");
+const backButtons =
+document.querySelectorAll(".back-to-portfolio");
+
+
+
+function hideAllPortfolioPages() {
+
+  portfolioPages.forEach(page => {
+
+    page.classList.remove("active");
+
+  });
+
+}
+
+
+
+function openPortfolioPage(pageID) {
+
+  hideAllPortfolioPages();
+
+
+  portfolioHome.style.display =
+  "none";
+
+
+  const selectedPage =
+  document.getElementById(pageID);
+
+
+  if (!selectedPage) {
+
+    return;
+
+  }
+
+
+  selectedPage.classList.add("active");
+
+
+  setTimeout(() => {
+
+    document
+    .getElementById("portfolio")
+    .scrollIntoView({
+
+      behavior:"smooth",
+
+      block:"start"
+
+    });
+
+  }, 50);
+
+}
+
 
 
 categoryCards.forEach(card => {
@@ -49,37 +117,11 @@ categoryCards.forEach(card => {
     "click",
     () => {
 
-      const target =
-      card.dataset.target;
+      const pageID =
+      card.dataset.page;
 
 
-      videoSections.forEach(section => {
-
-        section.classList.remove("active-section");
-
-      });
-
-
-      const selectedSection =
-      document.getElementById(target);
-
-
-      selectedSection
-      .classList
-      .add("active-section");
-
-
-      setTimeout(() => {
-
-        selectedSection.scrollIntoView({
-
-          behavior:"smooth",
-
-          block:"start"
-
-        });
-
-      },100);
+      openPortfolioPage(pageID);
 
     }
   );
@@ -88,68 +130,111 @@ categoryCards.forEach(card => {
 
 
 
-/* BACK BUTTON */
+function backToPortfolio() {
 
-document
-.querySelectorAll(".back-btn")
-.forEach(button => {
+  hideAllPortfolioPages();
+
+
+  portfolioHome.style.display =
+  "block";
+
+
+  setTimeout(() => {
+
+    document
+    .getElementById("portfolio")
+    .scrollIntoView({
+
+      behavior:"smooth",
+
+      block:"start"
+
+    });
+
+  }, 50);
+
+}
+
+
+
+backButtons.forEach(button => {
 
   button.addEventListener(
     "click",
-    () => {
-
-      videoSections.forEach(section => {
-
-        section.classList.remove("active-section");
-
-      });
-
-
-      document
-      .getElementById("portfolio")
-      .scrollIntoView({
-
-        behavior:"smooth",
-
-        block:"start"
-
-      });
-
-    }
+    backToPortfolio
   );
 
 });
 
 
 
-/* VIDEO PLAYER */
+/* =========================================
+   VIDEO PLAYER
+========================================= */
 
 const videoCards =
 document.querySelectorAll(".video-card");
 
-
 const videoModal =
 document.getElementById("videoModal");
-
 
 const videoPlayer =
 document.getElementById("videoPlayer");
 
-
 const modalTitle =
 document.getElementById("modalTitle");
-
 
 const modalType =
 document.getElementById("modalType");
 
-
 const modalClose =
 document.getElementById("modalClose");
 
+const modalBackground =
+document.getElementById("modalBackground");
 
-const modalBg =
-document.getElementById("modalBg");
+
+
+function openVideo(card) {
+
+  const videoID =
+  card.dataset.video;
+
+
+  const title =
+  card.dataset.title || "";
+
+
+  const type =
+  card.dataset.type || "";
+
+
+  if (!videoID) {
+
+    return;
+
+  }
+
+
+  videoPlayer.src =
+
+  `https://www.youtube.com/embed/${videoID}?autoplay=1&rel=0`;
+
+
+  modalTitle.textContent =
+  title;
+
+
+  modalType.textContent =
+  type;
+
+
+  videoModal.classList.add("open");
+
+
+  document.body.classList.add("no-scroll");
+
+}
 
 
 
@@ -159,38 +244,7 @@ videoCards.forEach(card => {
     "click",
     () => {
 
-      const id =
-      card.dataset.video;
-
-
-      const title =
-      card.dataset.title;
-
-
-      const type =
-      card.dataset.type;
-
-
-      videoPlayer.src =
-
-      `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-
-
-      modalTitle.textContent =
-      title;
-
-
-      modalType.textContent =
-      type;
-
-
-      videoModal
-      .classList
-      .add("open");
-
-
-      document.body.style.overflow =
-      "hidden";
+      openVideo(card);
 
     }
   );
@@ -201,43 +255,44 @@ videoCards.forEach(card => {
 
 function closeVideo() {
 
-
-  videoModal
-  .classList
-  .remove("open");
+  videoModal.classList.remove("open");
 
 
   videoPlayer.src =
   "";
 
 
-  document.body.style.overflow =
-  "";
+  document.body.classList.remove("no-scroll");
 
 }
 
 
 
-modalClose
-.addEventListener(
-  "click",
-  closeVideo
-);
+if (modalClose) {
+
+  modalClose.addEventListener(
+    "click",
+    closeVideo
+  );
+
+}
 
 
-modalBg
-.addEventListener(
-  "click",
-  closeVideo
-);
+if (modalBackground) {
+
+  modalBackground.addEventListener(
+    "click",
+    closeVideo
+  );
+
+}
 
 
-document
-.addEventListener(
+document.addEventListener(
   "keydown",
   event => {
 
-    if(event.key === "Escape") {
+    if (event.key === "Escape") {
 
       closeVideo();
 
