@@ -1,37 +1,31 @@
+/* ================= MOBILE MENU ================= */
+
 const menuBtn =
-document.querySelector('.menu-btn');
+document.getElementById("menuBtn");
 
 const mobileMenu =
-document.querySelector('.mobile-menu');
+document.getElementById("mobileMenu");
 
 
 menuBtn.addEventListener(
-  'click',
+  "click",
   () => {
 
-    const open =
-    mobileMenu.classList.toggle('open');
-
-    menuBtn.setAttribute(
-      'aria-expanded',
-      open
-    );
+    mobileMenu.classList.toggle("open");
 
   }
 );
 
 
 document
-.querySelectorAll('.mobile-menu a')
+.querySelectorAll(".mobile-menu a")
 .forEach(link => {
 
   link.addEventListener(
-    'click',
+    "click",
     () => {
 
-      mobileMenu
-      .classList
-      .remove('open');
+      mobileMenu.classList.remove("open");
 
     }
   );
@@ -39,258 +33,168 @@ document
 });
 
 
-/* SCROLL ANIMATION */
 
-const revealObserver =
-new IntersectionObserver(
+/* ================= CATEGORY SWITCH ================= */
 
-  entries => {
+const categoryButtons =
+document.querySelectorAll(".category-btn");
 
-    entries.forEach(
-      entry => {
+const categories =
+document.querySelectorAll(".portfolio-category");
 
-        if(
-          entry.isIntersecting
-        ){
 
-          entry.target
-          .classList
-          .add('visible');
+categoryButtons.forEach(button => {
 
-        }
+  button.addEventListener(
+    "click",
+    () => {
 
-      }
-    );
 
-  },
+      categoryButtons.forEach(btn => {
 
-  {
-    threshold:.12
-  }
+        btn.classList.remove("active");
 
-);
+      });
 
 
-document
-.querySelectorAll('.reveal')
-.forEach(
+      categories.forEach(category => {
 
-  element => {
+        category.classList.remove("active-category");
 
-    revealObserver
-    .observe(element);
+      });
 
-  }
 
-);
+      button.classList.add("active");
 
 
-/* FILTER VIDEOS */
+      const selected =
+      button.dataset.section;
 
-const filters =
-document.querySelectorAll('.filter');
 
-const cards =
-document.querySelectorAll('.video-card');
+      document
+      .getElementById(selected)
+      .classList
+      .add("active-category");
 
+    }
+  );
 
-filters.forEach(
+});
 
-  button => {
 
-    button.addEventListener(
-      'click',
-      () => {
 
-        filters.forEach(
+/* ================= VIDEO PLAYER ================= */
 
-          item => {
+const videoCards =
+document.querySelectorAll(".video-card");
 
-            item.classList
-            .remove('active');
 
-          }
+const videoModal =
+document.getElementById("videoModal");
 
-        );
 
+const youtubePlayer =
+document.getElementById("youtubePlayer");
 
-        button.classList
-        .add('active');
 
+const videoTitle =
+document.getElementById("videoTitle");
 
-        const wanted =
-        button.dataset.filter;
 
+const videoType =
+document.getElementById("videoType");
 
-        cards.forEach(
 
-          card => {
+const closeVideo =
+document.getElementById("closeVideo");
 
-            const categories =
 
-            (
-              card.dataset.category || ''
-            )
+const modalBg =
+document.getElementById("modalBg");
 
-            .split(' ');
 
 
-            const hide =
+videoCards.forEach(card => {
 
-            wanted !== 'all'
 
-            &&
+  card.addEventListener(
+    "click",
+    () => {
 
-            !categories
-            .includes(wanted);
 
+      const id =
+      card.dataset.video;
 
-            card.classList
-            .toggle(
-              'hidden-card',
-              hide
-            );
 
-          }
+      const title =
+      card.dataset.title;
 
-        );
 
-      }
+      const type =
+      card.dataset.type;
 
-    );
 
-  }
+      youtubePlayer.src =
 
-);
+      `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
 
 
-/* VIDEO POPUP */
+      videoTitle.textContent =
+      title;
 
-const modal =
-document.getElementById(
-  'videoModal'
-);
 
+      videoType.textContent =
+      type;
 
-const frame =
-document.getElementById(
-  'videoFrame'
-);
 
+      videoModal.classList.add("open");
 
-const modalTitle =
-document.getElementById(
-  'modalTitle'
-);
 
+      document.body.style.overflow =
+      "hidden";
 
-const modalSubtitle =
-document.getElementById(
-  'modalSubtitle'
-);
+    }
+  );
 
+});
 
-function openVideo(card){
 
-  const id =
-  card.dataset.video;
 
+function closePlayer() {
 
-  if(!id) return;
 
+  videoModal.classList.remove("open");
 
-  frame.src =
 
-  `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-
-
-  modalTitle.textContent =
-
-  card.dataset.title ||
-  'Video';
-
-
-  modalSubtitle.textContent =
-
-  card.dataset.subtitle ||
-  '';
-
-
-  modal.classList
-  .add('open');
+  youtubePlayer.src = "";
 
 
   document.body.style.overflow =
-  'hidden';
+  "";
 
 }
 
 
-function closeVideo(){
 
-  modal.classList
-  .remove('open');
-
-
-  frame.src = '';
-
-
-  document.body.style.overflow =
-  '';
-
-}
-
-
-document
-.querySelectorAll(
-  '.video-card[data-video]'
-)
-.forEach(
-
-  card => {
-
-    card.addEventListener(
-      'click',
-      () => {
-
-        openVideo(card);
-
-      }
-    );
-
-  }
-
+closeVideo.addEventListener(
+  "click",
+  closePlayer
 );
 
 
-document
-.querySelectorAll(
-  '[data-close]'
-)
-.forEach(
-
-  element => {
-
-    element.addEventListener(
-      'click',
-      closeVideo
-    );
-
-  }
-
+modalBg.addEventListener(
+  "click",
+  closePlayer
 );
 
 
-document
-.addEventListener(
-  'keydown',
-  event => {
+document.addEventListener(
+  "keydown",
+  e => {
 
-    if(
-      event.key === 'Escape'
-    ){
+    if(e.key === "Escape") {
 
-      closeVideo();
+      closePlayer();
 
     }
 
