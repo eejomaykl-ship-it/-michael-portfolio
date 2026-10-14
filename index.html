@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#070707">
+  <meta name="theme-color" content="#050509">
 
   <title>Michael Ehab | Video Editor & AI Content Creator</title>
 
@@ -15,28 +15,24 @@
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap"
     rel="stylesheet"
   >
 
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header class="header">
 
-  <a href="#home" class="logo-box">
+  <a href="#home" class="brand">
 
     <img
       src="85133653-0F74-4186-A24C-D3E91AC5949A.png"
@@ -52,7 +48,7 @@
 
     <a href="#home">Home</a>
 
-    <a href="#work">Videos</a>
+    <a href="#portfolio">Portfolio</a>
 
     <a href="#about">About</a>
 
@@ -66,7 +62,7 @@
     target="_blank"
     class="talk-btn"
   >
-    Let's Talk
+    Let's Work Together
   </a>
 
 
@@ -81,17 +77,13 @@
 </header>
 
 
-
-<!-- ================= MOBILE MENU ================= -->
+<!-- MOBILE MENU -->
 
 <div class="mobile-menu" id="mobileMenu">
 
   <a href="#home">Home</a>
-
-  <a href="#work">Videos</a>
-
+  <a href="#portfolio">Portfolio</a>
   <a href="#about">About</a>
-
   <a href="#contact">Contact</a>
 
 </div>
@@ -101,39 +93,39 @@
 <main>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero" id="home">
 
-  <div class="hero-image"></div>
+  <div class="hero-bg"></div>
 
-  <div class="hero-dark"></div>
+  <div class="hero-overlay"></div>
 
 
   <div class="hero-content">
 
-    <p class="mini-title">
+    <p class="eyebrow">
       VIDEO EDITOR • AI CONTENT CREATOR
     </p>
 
 
     <h1>
-
       MICHAEL
-
       <span>EHAB</span>
-
     </h1>
 
 
-    <h2>
+    <p class="hero-role">
       Video Editor & AI Content Creator
-    </h2>
+    </p>
 
 
     <div class="hero-buttons">
 
-      <a href="#work" class="gold-btn">
+      <a
+        href="#portfolio"
+        class="primary-btn"
+      >
         View My Work
       </a>
 
@@ -141,7 +133,7 @@
       <a
         href="https://wa.me/201289948764"
         target="_blank"
-        class="black-btn"
+        class="secondary-btn"
       >
         WhatsApp
       </a>
@@ -154,325 +146,445 @@
   <img
     class="hero-logo"
     src="85133653-0F74-4186-A24C-D3E91AC5949A.png"
-    alt="Michael Ehab"
+    alt="Michael Ehab Logo"
   >
 
 </section>
 
 
 
-<!-- ================= WORK ================= -->
+<!-- PORTFOLIO -->
 
-<section class="work section" id="work">
+<section class="portfolio section" id="portfolio">
 
 
-  <div class="section-title">
+  <div class="portfolio-heading">
 
-    <p>PORTFOLIO</p>
+    <p class="eyebrow">
+      SELECTED WORK
+    </p>
 
     <h2>
-      Selected <span>Work</span>
+      My Video <span>Portfolio</span>
     </h2>
 
   </div>
 
 
 
-  <!-- CATEGORY BUTTONS -->
+  <!-- CATEGORY CARDS -->
 
-  <div class="category-switch">
+  <div class="category-grid">
 
-    <button
-      class="category-btn active"
-      data-section="teachers"
+
+    <!-- TEACHERS -->
+
+    <article
+      class="category-card teacher-card"
+      data-target="teachersSection"
     >
-      Teachers
-    </button>
+
+      <img
+        src="F8C5FAEC-BDC6-4582-9351-F5CA2239A07C.jpeg"
+        alt="Teacher Reels"
+      >
+
+      <div class="category-dark"></div>
 
 
-    <button
-      class="category-btn"
-      data-section="ai"
+      <div class="category-content">
+
+        <h3>
+          Teacher <span>Reels</span>
+        </h3>
+
+        <button>
+          ▶
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- AI -->
+
+    <article
+      class="category-card ai-card"
+      data-target="aiSection"
     >
-      AI Videos
-    </button>
+
+      <img
+        src="A3E9916F-DAF4-4A0B-91D0-BB319D2EC4E6.jpeg"
+        alt="AI Videos"
+      >
+
+      <div class="category-dark"></div>
+
+
+      <div class="category-content">
+
+        <h3>
+          AI <span>Videos</span>
+        </h3>
+
+        <button>
+          ▶
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- CLIENTS -->
+
+    <article
+      class="category-card clients-card"
+      data-target="clientsSection"
+    >
+
+      <img
+        src="A804AB99-AC5C-44AD-A3C3-2FDAF598784A.png"
+        alt="Clients"
+      >
+
+      <div class="category-dark"></div>
+
+
+      <div class="category-content">
+
+        <h3>
+          Clients
+        </h3>
+
+        <button>
+          ▶
+        </button>
+
+      </div>
+
+    </article>
+
 
   </div>
 
 
 
-<!-- ================= TEACHERS ================= -->
+  <!-- ================= TEACHERS ================= -->
 
-<div
-  class="portfolio-category active-category"
-  id="teachers"
->
+  <section
+    class="videos-section active-section"
+    id="teachersSection"
+  >
 
 
-  <div class="category-heading">
+    <div class="videos-title">
 
-    <div>
+      <button class="back-btn">
+        ←
+      </button>
 
-      <p class="small-gold">
-        EDUCATIONAL CONTENT
-      </p>
 
-      <h3>
-        Teachers Videos
-      </h3>
+      <div>
+
+        <p class="eyebrow">
+          EDUCATIONAL CONTENT
+        </p>
+
+        <h2>
+          Teacher <span>Reels</span>
+        </h2>
+
+      </div>
 
     </div>
 
 
-    <span class="project-count">
-      3 Projects
-    </span>
 
-  </div>
+    <div class="videos-grid">
 
 
+      <!-- PROGRAMMING -->
 
-  <div class="video-grid">
+      <article
+        class="video-card"
+        data-video="lLwunEfHVpE"
+        data-title="AI Programming Teacher"
+        data-type="Educational / Programming"
+      >
 
+        <div class="video-thumb">
 
-    <!-- PROGRAMMING TEACHER -->
+          <img
+            src="https://img.youtube.com/vi/lLwunEfHVpE/maxresdefault.jpg"
+            alt="AI Programming Teacher"
+          >
 
-    <article
-      class="video-card"
-      data-video="lLwunEfHVpE"
-      data-title="AI Programming Teacher"
-      data-type="Programming / Educational"
-    >
+          <div class="youtube-play">
+            ▶
+          </div>
 
-      <div class="thumb">
-
-        <img
-          src="https://img.youtube.com/vi/lLwunEfHVpE/maxresdefault.jpg"
-          alt="Programming Teacher Video"
-        >
-
-        <div class="play">
-          ▶
         </div>
 
-      </div>
 
+        <div class="video-copy">
 
-      <div class="video-info">
-
-        <div>
-
-          <h4>
+          <h3>
             AI Programming Teacher
-          </h4>
+          </h3>
 
           <p>
-            Programming / Educational
+            Educational Reel
           </p>
 
         </div>
 
-
-        <span>
-          ↗
-        </span>
-
-      </div>
-
-    </article>
+      </article>
 
 
 
-    <!-- MR MOHAMED SALAH -->
+      <!-- MOHAMED SALAH -->
 
-    <article
-      class="video-card"
-      data-video="oLVoXuHsqpk"
-      data-title="Mr. Mohamed Salah — Arabic"
-      data-type="Arabic / Educational"
-    >
+      <article
+        class="video-card"
+        data-video="oLVoXuHsqpk"
+        data-title="Mr. Mohamed Salah"
+        data-type="Arabic / Educational"
+      >
 
-      <div class="thumb">
+        <div class="video-thumb">
 
-        <img
-          src="https://img.youtube.com/vi/oLVoXuHsqpk/maxresdefault.jpg"
-          alt="Mr Mohamed Salah"
-        >
+          <img
+            src="https://img.youtube.com/vi/oLVoXuHsqpk/maxresdefault.jpg"
+            alt="Mr Mohamed Salah"
+          >
 
-        <div class="play">
-          ▶
+          <div class="youtube-play">
+            ▶
+          </div>
+
         </div>
 
-      </div>
 
+        <div class="video-copy">
 
-      <div class="video-info">
-
-        <div>
-
-          <h4>
-            Mr. Mohamed Salah — Arabic
-          </h4>
+          <h3>
+            Mr. Mohamed Salah
+          </h3>
 
           <p>
-            Arabic / Educational
+            Arabic Reel
           </p>
 
         </div>
 
-
-        <span>
-          ↗
-        </span>
-
-      </div>
-
-    </article>
+      </article>
 
 
 
-    <!-- MISS MAI -->
+      <!-- MISS MAI NEW VIDEO -->
 
-    <article
-      class="video-card"
-      data-video="9nOMO_PkSgI"
-      data-title="Miss Mai Magdy — English"
-      data-type="English / Short Form"
-    >
+      <article
+        class="video-card"
+        data-video="LzVmR1XkPeI"
+        data-title="Miss Mai Magdy"
+        data-type="English / Educational"
+      >
 
-      <div class="thumb short-thumb">
+        <div class="video-thumb">
 
-        <img
-          src="https://img.youtube.com/vi/9nOMO_PkSgI/maxresdefault.jpg"
-          alt="Miss Mai Magdy"
-        >
+          <img
+            src="https://img.youtube.com/vi/LzVmR1XkPeI/maxresdefault.jpg"
+            alt="Miss Mai Magdy"
+          >
 
-        <div class="play">
-          ▶
+          <div class="youtube-play">
+            ▶
+          </div>
+
         </div>
 
-      </div>
 
+        <div class="video-copy">
 
-      <div class="video-info">
-
-        <div>
-
-          <h4>
-            Miss Mai Magdy — English
-          </h4>
+          <h3>
+            Miss Mai Magdy
+          </h3>
 
           <p>
-            English / Short Form
+            English Reel
           </p>
 
         </div>
 
+      </article>
 
-        <span>
-          ↗
-        </span>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= AI VIDEOS ================= -->
+
+  <section
+    class="videos-section"
+    id="aiSection"
+  >
+
+
+    <div class="videos-title">
+
+      <button class="back-btn">
+        ←
+      </button>
+
+
+      <div>
+
+        <p class="eyebrow">
+          AI CONTENT
+        </p>
+
+        <h2>
+          AI <span>Videos</span>
+        </h2>
 
       </div>
-
-    </article>
-
-
-  </div>
-
-</div>
-
-
-
-<!-- ================= AI VIDEOS ================= -->
-
-<div
-  class="portfolio-category"
-  id="ai"
->
-
-
-  <div class="category-heading">
-
-    <div>
-
-      <p class="small-gold">
-        AI CONTENT
-      </p>
-
-      <h3>
-        AI Videos
-      </h3>
 
     </div>
 
 
-    <span class="project-count">
-      1 Project
-    </span>
 
-  </div>
+    <div class="videos-grid">
 
 
+      <article
+        class="video-card"
+        data-video="lLwunEfHVpE"
+        data-title="AI Programming Teacher"
+        data-type="AI Video"
+      >
 
-  <div class="video-grid">
+        <div class="video-thumb">
 
+          <img
+            src="https://img.youtube.com/vi/lLwunEfHVpE/maxresdefault.jpg"
+            alt="AI Video"
+          >
 
-    <article
-      class="video-card"
-      data-video="lLwunEfHVpE"
-      data-title="AI Programming Teacher"
-      data-type="AI Video / Educational"
-    >
+          <div class="youtube-play">
+            ▶
+          </div>
 
-      <div class="thumb">
-
-        <img
-          src="https://img.youtube.com/vi/lLwunEfHVpE/maxresdefault.jpg"
-          alt="AI Programming Video"
-        >
-
-        <div class="play">
-          ▶
         </div>
 
-      </div>
 
+        <div class="video-copy">
 
-      <div class="video-info">
-
-        <div>
-
-          <h4>
+          <h3>
             AI Programming Teacher
-          </h4>
+          </h3>
 
           <p>
-            AI Video / Educational
+            AI Video
           </p>
 
         </div>
 
+      </article>
 
-        <span>
-          ↗
-        </span>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= CLIENTS ================= -->
+
+  <section
+    class="videos-section"
+    id="clientsSection"
+  >
+
+
+    <div class="videos-title">
+
+      <button class="back-btn">
+        ←
+      </button>
+
+
+      <div>
+
+        <p class="eyebrow">
+          CLIENT WORK
+        </p>
+
+        <h2>
+          Clients
+        </h2>
 
       </div>
 
-    </article>
+    </div>
 
 
-  </div>
 
-</div>
+    <div class="videos-grid">
+
+
+      <article
+        class="video-card"
+        data-video="6IoYvBQ6mi4"
+        data-title="Client Project"
+        data-type="Business / Professional"
+      >
+
+        <div class="video-thumb">
+
+          <img
+            src="https://img.youtube.com/vi/6IoYvBQ6mi4/maxresdefault.jpg"
+            alt="Client Project"
+          >
+
+          <div class="youtube-play">
+            ▶
+          </div>
+
+        </div>
+
+
+        <div class="video-copy">
+
+          <h3>
+            Client Project
+          </h3>
+
+          <p>
+            Business / Professional
+          </p>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
 
 
 </section>
 
 
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 
 <section class="about section" id="about">
 
@@ -488,10 +600,9 @@
 
 
 
-  <div class="about-text">
+  <div class="about-content">
 
-
-    <p class="small-gold">
+    <p class="eyebrow">
       ABOUT ME
     </p>
 
@@ -501,73 +612,45 @@
     </h2>
 
 
-    <p class="bio">
+    <p>
 
       I'm Michael Ehab, a 17-year-old Egyptian
       Video Editor & AI Content Creator.
 
       I create reels, short-form videos,
-      educational content and AI-powered videos
-      using CapCut and creative AI tools.
+      educational content, client projects
+      and AI-powered visual content.
 
     </p>
 
 
-
-    <div class="about-boxes">
-
+    <div class="about-info">
 
       <div>
-
-        <strong>
-          17
-        </strong>
-
-        <span>
-          Years Old
-        </span>
-
+        <strong>17</strong>
+        <span>Years Old</span>
       </div>
-
-
 
       <div>
-
-        <strong>
-          EG
-        </strong>
-
-        <span>
-          Egypt
-        </span>
-
+        <strong>EG</strong>
+        <span>Egypt</span>
       </div>
-
-
 
       <div>
-
-        <strong>
-          AI
-        </strong>
-
-        <span>
-          Creator
-        </span>
-
+        <strong>AI</strong>
+        <span>Creator</span>
       </div>
-
 
     </div>
 
-
   </div>
+
 
 </section>
 
 
 
-<!-- ================= CONTACT ================= -->
+<!-- CONTACT -->
 
 <section class="contact section" id="contact">
 
@@ -577,19 +660,14 @@
 
     <div>
 
-      <p class="small-gold">
+      <p class="eyebrow">
         CONTACT
       </p>
 
 
       <h2>
-
         Have a project
-
-        <span>
-          in mind?
-        </span>
-
+        <span>in mind?</span>
       </h2>
 
     </div>
@@ -599,13 +677,8 @@
     <a
       href="https://wa.me/201289948764"
       target="_blank"
-      class="whatsapp"
+      class="whatsapp-btn"
     >
-
-      <div class="whatsapp-icon">
-        ☎
-      </div>
-
 
       <div>
 
@@ -620,9 +693,9 @@
       </div>
 
 
-      <b>
+      <span>
         →
-      </b>
+      </span>
 
     </a>
 
@@ -636,21 +709,21 @@
 
 
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer>
 
 
-  <div class="footer-logo">
+  <div class="footer-brand">
 
     <img
       src="85133653-0F74-4186-A24C-D3E91AC5949A.png"
-      alt="Michael Ehab Logo"
+      alt="Michael Ehab"
     >
 
-    <span>
+    <strong>
       Michael Ehab
-    </span>
+    </strong>
 
   </div>
 
@@ -664,7 +737,7 @@
 
 
 
-<!-- ================= VIDEO POPUP ================= -->
+<!-- VIDEO MODAL -->
 
 <div
   class="video-modal"
@@ -678,21 +751,21 @@
   ></div>
 
 
-  <div class="modal-content">
+  <div class="modal-box">
 
 
     <button
-      class="close-video"
-      id="closeVideo"
+      class="modal-close"
+      id="modalClose"
     >
       ×
     </button>
 
 
-    <div class="video-player">
+    <div class="player">
 
       <iframe
-        id="youtubePlayer"
+        id="videoPlayer"
         src=""
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
@@ -701,11 +774,11 @@
     </div>
 
 
-    <div class="modal-info">
+    <div class="modal-text">
 
-      <h3 id="videoTitle"></h3>
+      <h3 id="modalTitle"></h3>
 
-      <p id="videoType"></p>
+      <p id="modalType"></p>
 
     </div>
 
