@@ -1,4 +1,4 @@
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU */
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -34,47 +34,52 @@ document
 
 
 
-/* ================= CATEGORY SWITCH ================= */
+/* CATEGORY CARDS */
 
-const categoryButtons =
-document.querySelectorAll(".category-btn");
+const categoryCards =
+document.querySelectorAll(".category-card");
 
-const categories =
-document.querySelectorAll(".portfolio-category");
+const videoSections =
+document.querySelectorAll(".videos-section");
 
 
-categoryButtons.forEach(button => {
+categoryCards.forEach(card => {
 
-  button.addEventListener(
+  card.addEventListener(
     "click",
     () => {
 
-
-      categoryButtons.forEach(btn => {
-
-        btn.classList.remove("active");
-
-      });
+      const target =
+      card.dataset.target;
 
 
-      categories.forEach(category => {
+      videoSections.forEach(section => {
 
-        category.classList.remove("active-category");
+        section.classList.remove("active-section");
 
       });
 
 
-      button.classList.add("active");
+      const selectedSection =
+      document.getElementById(target);
 
 
-      const selected =
-      button.dataset.section;
-
-
-      document
-      .getElementById(selected)
+      selectedSection
       .classList
-      .add("active-category");
+      .add("active-section");
+
+
+      setTimeout(() => {
+
+        selectedSection.scrollIntoView({
+
+          behavior:"smooth",
+
+          block:"start"
+
+        });
+
+      },100);
 
     }
   );
@@ -83,7 +88,41 @@ categoryButtons.forEach(button => {
 
 
 
-/* ================= VIDEO PLAYER ================= */
+/* BACK BUTTON */
+
+document
+.querySelectorAll(".back-btn")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      videoSections.forEach(section => {
+
+        section.classList.remove("active-section");
+
+      });
+
+
+      document
+      .getElementById("portfolio")
+      .scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"start"
+
+      });
+
+    }
+  );
+
+});
+
+
+
+/* VIDEO PLAYER */
 
 const videoCards =
 document.querySelectorAll(".video-card");
@@ -93,20 +132,20 @@ const videoModal =
 document.getElementById("videoModal");
 
 
-const youtubePlayer =
-document.getElementById("youtubePlayer");
+const videoPlayer =
+document.getElementById("videoPlayer");
 
 
-const videoTitle =
-document.getElementById("videoTitle");
+const modalTitle =
+document.getElementById("modalTitle");
 
 
-const videoType =
-document.getElementById("videoType");
+const modalType =
+document.getElementById("modalType");
 
 
-const closeVideo =
-document.getElementById("closeVideo");
+const modalClose =
+document.getElementById("modalClose");
 
 
 const modalBg =
@@ -116,11 +155,9 @@ document.getElementById("modalBg");
 
 videoCards.forEach(card => {
 
-
   card.addEventListener(
     "click",
     () => {
-
 
       const id =
       card.dataset.video;
@@ -134,20 +171,22 @@ videoCards.forEach(card => {
       card.dataset.type;
 
 
-      youtubePlayer.src =
+      videoPlayer.src =
 
       `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
 
 
-      videoTitle.textContent =
+      modalTitle.textContent =
       title;
 
 
-      videoType.textContent =
+      modalType.textContent =
       type;
 
 
-      videoModal.classList.add("open");
+      videoModal
+      .classList
+      .add("open");
 
 
       document.body.style.overflow =
@@ -160,13 +199,16 @@ videoCards.forEach(card => {
 
 
 
-function closePlayer() {
+function closeVideo() {
 
 
-  videoModal.classList.remove("open");
+  videoModal
+  .classList
+  .remove("open");
 
 
-  youtubePlayer.src = "";
+  videoPlayer.src =
+  "";
 
 
   document.body.style.overflow =
@@ -176,25 +218,28 @@ function closePlayer() {
 
 
 
-closeVideo.addEventListener(
+modalClose
+.addEventListener(
   "click",
-  closePlayer
+  closeVideo
 );
 
 
-modalBg.addEventListener(
+modalBg
+.addEventListener(
   "click",
-  closePlayer
+  closeVideo
 );
 
 
-document.addEventListener(
+document
+.addEventListener(
   "keydown",
-  e => {
+  event => {
 
-    if(e.key === "Escape") {
+    if(event.key === "Escape") {
 
-      closePlayer();
+      closeVideo();
 
     }
 
