@@ -1,6 +1,6 @@
-/* =========================================
+/* =========================
    MOBILE MENU
-========================================= */
+========================= */
 
 const menuBtn =
 document.getElementById("menuBtn");
@@ -40,25 +40,108 @@ document
 
 
 
-/* =========================================
-   PORTFOLIO PAGES
-========================================= */
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements =
+document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+new IntersectionObserver(
+
+  entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add("visible");
+
+        revealObserver.unobserve(
+          entry.target
+        );
+
+      }
+
+    });
+
+  },
+
+  {
+    threshold:0.12
+  }
+
+);
+
+
+revealElements.forEach(element => {
+
+  revealObserver.observe(element);
+
+});
+
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+
+const heroBackground =
+document.getElementById("heroBackground");
+
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if (!heroBackground) return;
+
+
+    const scroll =
+    window.scrollY;
+
+
+    if (scroll < window.innerHeight) {
+
+      heroBackground.style.transform =
+      `translateY(${scroll * 0.10}px) scale(1.04)`;
+
+    }
+
+  },
+
+  {
+    passive:true
+  }
+
+);
+
+
+
+/* =========================
+   PORTFOLIO NAVIGATION
+========================= */
 
 const portfolioHome =
 document.getElementById("portfolioHome");
 
-const portfolioPages =
-document.querySelectorAll(".portfolio-page");
 
 const categoryCards =
 document.querySelectorAll(".category-card");
 
+
+const portfolioPages =
+document.querySelectorAll(".portfolio-page");
+
+
 const backButtons =
-document.querySelectorAll(".back-to-portfolio");
+document.querySelectorAll(".back-button");
 
 
 
-function hideAllPortfolioPages() {
+function closePortfolioPages() {
 
   portfolioPages.forEach(page => {
 
@@ -70,30 +153,38 @@ function hideAllPortfolioPages() {
 
 
 
-function openPortfolioPage(pageID) {
+function openPortfolioPage(pageId) {
 
-  hideAllPortfolioPages();
-
-
-  portfolioHome.style.display =
-  "none";
+  closePortfolioPages();
 
 
-  const selectedPage =
-  document.getElementById(pageID);
+  const page =
+  document.getElementById(pageId);
 
 
-  if (!selectedPage) {
+  if (!page) {
 
     return;
 
   }
 
 
-  selectedPage.classList.add("active");
+  portfolioHome.style.opacity =
+  "0";
+
+
+  portfolioHome.style.transform =
+  "translateY(-15px)";
 
 
   setTimeout(() => {
+
+    portfolioHome.style.display =
+    "none";
+
+
+    page.classList.add("active");
+
 
     document
     .getElementById("portfolio")
@@ -105,7 +196,7 @@ function openPortfolioPage(pageID) {
 
     });
 
-  }, 50);
+  }, 250);
 
 }
 
@@ -117,11 +208,11 @@ categoryCards.forEach(card => {
     "click",
     () => {
 
-      const pageID =
+      const target =
       card.dataset.page;
 
 
-      openPortfolioPage(pageID);
+      openPortfolioPage(target);
 
     }
   );
@@ -132,26 +223,50 @@ categoryCards.forEach(card => {
 
 function backToPortfolio() {
 
-  hideAllPortfolioPages();
+  closePortfolioPages();
 
 
   portfolioHome.style.display =
   "block";
 
 
-  setTimeout(() => {
+  portfolioHome.style.opacity =
+  "0";
 
-    document
-    .getElementById("portfolio")
-    .scrollIntoView({
 
-      behavior:"smooth",
+  portfolioHome.style.transform =
+  "translateY(15px)";
 
-      block:"start"
+
+  requestAnimationFrame(() => {
+
+    requestAnimationFrame(() => {
+
+      portfolioHome.style.transition =
+      "all .45s cubic-bezier(.2,.8,.2,1)";
+
+
+      portfolioHome.style.opacity =
+      "1";
+
+
+      portfolioHome.style.transform =
+      "none";
 
     });
 
-  }, 50);
+  });
+
+
+  document
+  .getElementById("portfolio")
+  .scrollIntoView({
+
+    behavior:"smooth",
+
+    block:"start"
+
+  });
 
 }
 
@@ -168,71 +283,67 @@ backButtons.forEach(button => {
 
 
 
-/* =========================================
-   VIDEO PLAYER
-========================================= */
+/* =========================
+   VIDEO MODAL
+========================= */
 
 const videoCards =
 document.querySelectorAll(".video-card");
 
+
 const videoModal =
 document.getElementById("videoModal");
+
 
 const videoPlayer =
 document.getElementById("videoPlayer");
 
+
 const modalTitle =
 document.getElementById("modalTitle");
+
 
 const modalType =
 document.getElementById("modalType");
 
+
 const modalClose =
 document.getElementById("modalClose");
 
-const modalBackground =
-document.getElementById("modalBackground");
+
+const modalBackdrop =
+document.getElementById("modalBackdrop");
 
 
 
 function openVideo(card) {
 
-  const videoID =
+  const videoId =
   card.dataset.video;
 
 
-  const title =
-  card.dataset.title || "";
-
-
-  const type =
-  card.dataset.type || "";
-
-
-  if (!videoID) {
-
-    return;
-
-  }
+  if (!videoId) return;
 
 
   videoPlayer.src =
 
-  `https://www.youtube.com/embed/${videoID}?autoplay=1&rel=0`;
+  `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
 
   modalTitle.textContent =
-  title;
+  card.dataset.title || "";
 
 
   modalType.textContent =
-  type;
+  card.dataset.type || "";
 
 
   videoModal.classList.add("open");
 
 
-  document.body.classList.add("no-scroll");
+  document.body.classList.add(
+    "modal-open"
+  );
 
 }
 
@@ -255,14 +366,18 @@ videoCards.forEach(card => {
 
 function closeVideo() {
 
-  videoModal.classList.remove("open");
+  videoModal.classList.remove(
+    "open"
+  );
 
 
   videoPlayer.src =
   "";
 
 
-  document.body.classList.remove("no-scroll");
+  document.body.classList.remove(
+    "modal-open"
+  );
 
 }
 
@@ -278,14 +393,15 @@ if (modalClose) {
 }
 
 
-if (modalBackground) {
+if (modalBackdrop) {
 
-  modalBackground.addEventListener(
+  modalBackdrop.addEventListener(
     "click",
     closeVideo
   );
 
 }
+
 
 
 document.addEventListener(
